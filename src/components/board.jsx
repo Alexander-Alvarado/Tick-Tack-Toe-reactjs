@@ -6,9 +6,12 @@ class Board extends Component {
     return (
       <Row
         grid={this.props.grid}
-        checkTile={this.props.checkTile}
         gameOver={this.props.gameOver}
         onReset={this.props.onReset}
+        freeSpaces={this.props.freeSpaces}
+        xTurn={this.props.xTurn}
+        checkTile={this.props.checkTile}
+        handleCpuTurn={this.props.handleCpuTurn}
       />
     );
   }

@@ -6,14 +6,16 @@ class TurnBar extends Component {
 
     if (this.props.gameOver === true) {
       if (this.props.xTurn === false) {
-        player = "X Wins!";
+        player = "You Win!";
       } else {
-        player = "O Wins!";
+        player = "CPU Wins!";
       }
+    } else if (this.props.freeSpaces === 0) {
+      player = "No Winner";
     } else if (this.props.xTurn === true) {
-      player = "X's Turn";
+      player = "Your Turn";
     } else {
-      player = "O's Turn";
+      player = "CPU's Turn";
     }
 
     return (

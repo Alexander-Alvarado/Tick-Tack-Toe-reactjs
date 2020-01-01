@@ -3,12 +3,34 @@ import Tile from "./tile";
 
 class Row extends Component {
   render() {
+    let cpuButton;
+    if (this.props.gameOver === false) {
+      cpuButton = (
+        <button
+          className="btn btn-primary m-1"
+          onClick={this.props.handleCpuTurn}
+        >
+          CPU Turn
+        </button>
+      );
+    } else if (this.props.gameOver === true) {
+      cpuButton = (
+        <button
+          disabled
+          className="btn btn-primary m-1"
+          onClick={this.props.handleCpuTurn}
+        >
+          CPU Turn
+        </button>
+      );
+    }
     return (
       <div className="container">
         <div className="d-flex justify-content-center btn ">{this.row1()}</div>
         <div className="d-flex justify-content-center btn ">{this.row2()}</div>
         <div className="d-flex justify-content-center btn ">{this.row3()}</div>
         <div className="d-flex justify-content-center">
+          {cpuButton}
           <button className="btn btn-danger" onClick={this.props.onReset}>
             Reset
           </button>
@@ -25,8 +47,11 @@ class Row extends Component {
         <Tile
           key={tile.id}
           tile={tile}
-          checkTile={this.props.checkTile}
           gameOver={this.props.gameOver}
+          freeSpaces={this.props.freeSpaces}
+          xTurn={this.props.xTurn}
+          checkTile={this.props.checkTile}
+          handleCpuTurn={this.props.handleCpuTurn}
         />
       ));
   }
@@ -39,8 +64,11 @@ class Row extends Component {
         <Tile
           key={tile.id}
           tile={tile}
-          checkTile={this.props.checkTile}
           gameOver={this.props.gameOver}
+          freeSpaces={this.props.freeSpaces}
+          xTurn={this.props.xTurn}
+          checkTile={this.props.checkTile}
+          handleCpuTurn={this.props.handleCpuTurn}
         />
       ));
   }
@@ -53,8 +81,11 @@ class Row extends Component {
         <Tile
           key={tile.id}
           tile={tile}
-          checkTile={this.props.checkTile}
           gameOver={this.props.gameOver}
+          freeSpaces={this.props.freeSpaces}
+          xTurn={this.props.xTurn}
+          checkTile={this.props.checkTile}
+          handleCpuTurn={this.props.handleCpuTurn}
         />
       ));
   }

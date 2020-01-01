@@ -5,9 +5,11 @@ import TurnBar from "./components/turnbar";
 
 class App extends Component {
   state = {
-    xTurn: true,
+    xTurn: true, //x is the player, o is cpu
     gameOver: false,
-    emptySpace: true,
+    freeSpaces: 9,
+    cpuBlock: false,
+    cpuMove: null,
     grid: [
       { id: 1, value: "_", winTile: false },
       { id: 2, value: "_", winTile: false },
@@ -25,8 +27,35 @@ class App extends Component {
     const grid = [...this.state.grid];
     const index = grid.indexOf(tile);
 
-    if (grid[index].value === "_") {
+    if (this.state.xTurn === true && grid[index].value === "_") {
       this.handlePlace(tile);
+    }
+  };
+
+  handleCpuTurn = () => {
+    if (this.state.xTurn === false) {
+      const grid = [...this.state.grid];
+
+      if (
+        this.state.cpuBlock === true &&
+        grid[this.state.cpuMove - 1].value === "_"
+      ) {
+        let index = this.state.cpuMove - 1;
+        grid[index].value = "o";
+        this.setState({ grid, cpuBlock: false, cpuMove: null });
+        console.log("blocked player at", this.state.cpuMove);
+      } else {
+        let randIndex;
+
+        do {
+          randIndex = Math.floor(Math.random() * 9);
+        } while (grid[randIndex].value !== "_");
+
+        grid[randIndex].value = "o";
+        this.setState({ grid });
+        console.log("random play at", randIndex + 1);
+      }
+      this.handlePlace();
     }
   };
 
@@ -40,16 +69,16 @@ class App extends Component {
       let xTurn = this.state.xTurn;
       xTurn = false;
       this.setState({ xTurn });
-    } else {
-      const grid = [...this.state.grid];
-      const index = grid.indexOf(tile);
-      grid[index].value = "o";
-      this.setState({ grid });
-
+    } else if (this.state.xTurn === false) {
       let xTurn = this.state.xTurn;
       xTurn = true;
       this.setState({ xTurn });
     }
+
+    let freeSpaces = this.state.freeSpaces;
+    freeSpaces--;
+    this.setState({ freeSpaces });
+
     this.checkWin(tile);
   };
 
@@ -68,9 +97,16 @@ class App extends Component {
     let gameOver = this.state.gameOver;
     gameOver = false;
     this.setState({ gameOver });
+
+    let freeSpaces = this.state.freeSpaces;
+    freeSpaces = 9;
+    this.setState({ freeSpaces });
+
+    this.setState({ cpuBlock: false, cpuMove: null });
+    console.log("new game");
   };
 
-  checkWin(tile) {
+  checkWin = () => {
     const { grid } = this.state;
 
     for (let i = 0; i < 9; i = i + 3) {
@@ -92,6 +128,34 @@ class App extends Component {
         gameOver = true;
         this.setState({ gameOver });
         console.log("Horizontal Winner");
+      } else if (
+        grid[i].value !== "_" &&
+        grid[i + 1].value !== "_" &&
+        grid[i + 2].value !== "o" &&
+        grid[i].value === grid[i + 1].value
+      ) {
+        this.setState({ cpuBlock: true, cpuMove: grid[i + 2].id });
+      } else if (
+        grid[i].value !== "_" &&
+        grid[i + 2].value !== "_" &&
+        grid[i + 1].value !== "o" &&
+        grid[i].value === grid[i + 2].value
+      ) {
+        this.setState({ cpuBlock: true, cpuMove: grid[i + 1].id });
+      } else if (
+        grid[i].value !== "_" &&
+        grid[i + 1].value !== "_" &&
+        grid[i + 2].value !== "o" &&
+        grid[i].value === grid[i + 1].value
+      ) {
+        this.setState({ cpuBlock: true, cpuMove: grid[i + 2].id });
+      } else if (
+        grid[i + 1].value !== "_" &&
+        grid[i + 2].value !== "_" &&
+        grid[i].value !== "o" &&
+        grid[i + 1].value === grid[i + 2].value
+      ) {
+        this.setState({ cpuBlock: true, cpuMove: grid[i].id });
       }
     }
 
@@ -115,6 +179,27 @@ class App extends Component {
         this.setState({ gameOver });
 
         console.log("Vertical Winner");
+      } else if (
+        grid[i].value !== "_" &&
+        grid[i + 3].value !== "_" &&
+        grid[i + 6].value !== "o" &&
+        grid[i].value === grid[i + 3].value
+      ) {
+        this.setState({ cpuBlock: true, cpuMove: grid[i + 6].id });
+      } else if (
+        grid[i].value !== "_" &&
+        grid[i + 6].value !== "_" &&
+        grid[i + 3].value !== "o" &&
+        grid[i].value === grid[i + 6].value
+      ) {
+        this.setState({ cpuBlock: true, cpuMove: grid[i + 3].id });
+      } else if (
+        grid[i + 3].value !== "_" &&
+        grid[i + 6].value !== "_" &&
+        grid[i].value !== "o" &&
+        grid[i + 3].value === grid[i + 6].value
+      ) {
+        this.setState({ cpuBlock: true, cpuMove: grid[i].id });
       }
     }
 
@@ -136,6 +221,27 @@ class App extends Component {
       this.setState({ gameOver });
 
       console.log("Diagnal Winner");
+    }else if (
+      grid[0].value !== "_" &&
+      grid[4].value !== "_" &&
+      grid[8].value !== "o" &&
+      grid[0].value === grid[4].value
+    ) {
+      this.setState({ cpuBlock: true, cpuMove: grid[8].id });
+    }else if (
+      grid[0].value !== "_" &&
+      grid[8].value !== "_" &&
+      grid[4].value !== "o" &&
+      grid[0].value === grid[8].value
+    ) {
+      this.setState({ cpuBlock: true, cpuMove: grid[4].id });
+    }else if (
+      grid[4].value !== "_" &&
+      grid[8].value !== "_" &&
+      grid[0].value !== "o" &&
+      grid[4].value === grid[8].value
+    ) {
+      this.setState({ cpuBlock: true, cpuMove: grid[0].id });
     }
 
     if (
@@ -157,20 +263,51 @@ class App extends Component {
       this.setState({ gameOver });
 
       console.log("Diagnal Winner");
+    }else if (
+      grid[2].value !== "_" &&
+      grid[4].value !== "_" &&
+      grid[6].value !== "o" &&
+      grid[2].value === grid[4].value
+    ) {
+      this.setState({ cpuBlock: true, cpuMove: grid[6].id });
+    }else if (
+      grid[2].value !== "_" &&
+      grid[6].value !== "_" &&
+      grid[4].value !== "o" &&
+      grid[2].value === grid[6].value
+    ) {
+      this.setState({ cpuBlock: true, cpuMove: grid[4].id });
     }
-  }
+    else if (
+      grid[4].value !== "_" &&
+      grid[6].value !== "_" &&
+      grid[2].value !== "o" &&
+      grid[4].value === grid[6].value
+    ) {
+      this.setState({ cpuBlock: true, cpuMove: grid[2].id });
+    }
+  };
 
   render() {
     return (
       <React.Fragment>
-        <TurnBar xTurn={this.state.xTurn} gameOver={this.state.gameOver} />
-
-        <Board
-          grid={this.state.grid}
-          checkTile={this.checkTile}
-          onReset={this.handleReset}
+        <TurnBar
+          xTurn={this.state.xTurn}
           gameOver={this.state.gameOver}
+          freeSpaces={this.state.freeSpaces}
         />
+        <div>
+          <Board
+            grid={this.state.grid}
+            checkTile={this.checkTile}
+            onReset={this.handleReset}
+            gameOver={this.state.gameOver}
+            freeSpaces={this.state.freeSpaces}
+            xTurn={this.state.xTurn}
+            handlePlace={this.handlePlace}
+            handleCpuTurn={this.handleCpuTurn}
+          />
+        </div>
       </React.Fragment>
     );
   }

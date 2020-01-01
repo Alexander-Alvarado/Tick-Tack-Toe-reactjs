@@ -17,6 +17,7 @@ class Tile extends Component {
         </button>
       );
     } else if (this.props.tile.value === "_") {
+      //  if (this.props.xTurn === true) {
       tile = (
         <div className="">
           <button
@@ -26,6 +27,21 @@ class Tile extends Component {
             {this.props.tile.value}
           </button>
         </div>
+      );
+      /*     } else if (this.props.xTurn === false) {
+        tile = (
+          <div className="">
+            <button className="btn btn-lg btn-light mx-2">
+              {this.props.tile.value}
+            </button>
+          </div>
+        );
+      } */
+    } else if (this.props.freeSpaces === 0) {
+      tile = (
+        <button disabled className="btn btn-lg btn-warning mx-2">
+          {this.props.tile.value}
+        </button>
       );
     } else {
       tile = (
