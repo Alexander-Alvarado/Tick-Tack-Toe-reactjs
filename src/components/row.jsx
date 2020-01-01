@@ -4,7 +4,7 @@ import Tile from "./tile";
 class Row extends Component {
   render() {
     return (
-      <div className="bg-secondary">
+      <div>
         <div>
           <div className="btn-group">{this.row1()}</div>
         </div>

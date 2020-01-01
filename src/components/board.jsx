@@ -4,7 +4,7 @@ import Row from "./row";
 class Board extends Component {
   render() {
     return (
-      <div>
+      <div className="bg-secondary">
         <Row
           grid={this.props.grid}
           checkTile={this.props.checkTile}
