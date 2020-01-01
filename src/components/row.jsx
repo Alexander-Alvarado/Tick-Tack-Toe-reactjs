@@ -4,15 +4,14 @@ import Tile from "./tile";
 class Row extends Component {
   render() {
     return (
-      <div>
-        <div>
-          <div className="btn-group">{this.row1()}</div>
-        </div>
-        <div>
-          <div className="btn-group">{this.row2()}</div>
-        </div>
-        <div>
-          <div className="btn-group">{this.row3()}</div>
+      <div className="container">
+        <div className="d-flex justify-content-center btn ">{this.row1()}</div>
+        <div className="d-flex justify-content-center btn ">{this.row2()}</div>
+        <div className="d-flex justify-content-center btn ">{this.row3()}</div>
+        <div className="d-flex justify-content-center">
+          <button className="btn btn-danger" onClick={this.props.onReset}>
+            Reset
+          </button>
         </div>
       </div>
     );

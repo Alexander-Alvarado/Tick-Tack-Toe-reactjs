@@ -6,28 +6,30 @@ class Tile extends Component {
 
     if (this.props.tile.winTile === true) {
       tile = (
-        <button disabled className="btn  btn-success  m-1  ">
+        <button disabled className="btn btn-lg btn-success  mx-2">
           {this.props.tile.value}
         </button>
       );
     } else if (this.props.gameOver === true) {
       tile = (
-        <button disabled className="btn btn-light m-1">
+        <button disabled className="btn btn-lg btn-light mx-2">
           {this.props.tile.value}
         </button>
       );
     } else if (this.props.tile.value === "_") {
       tile = (
-        <button
-          className="btn btn-light m-1"
-          onClick={() => this.props.checkTile(this.props.tile)}
-        >
-          {this.props.tile.value}
-        </button>
+        <div className="">
+          <button
+            className="btn btn-lg btn-light mx-2"
+            onClick={() => this.props.checkTile(this.props.tile)}
+          >
+            {this.props.tile.value}
+          </button>
+        </div>
       );
     } else {
       tile = (
-        <button disabled className="btn btn-light m-1">
+        <button disabled className="btn btn-lg btn-light mx-2">
           {this.props.tile.value}
         </button>
       );

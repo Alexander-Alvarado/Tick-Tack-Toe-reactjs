@@ -164,6 +164,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <TurnBar xTurn={this.state.xTurn} gameOver={this.state.gameOver} />
+
         <Board
           grid={this.state.grid}
           checkTile={this.checkTile}
