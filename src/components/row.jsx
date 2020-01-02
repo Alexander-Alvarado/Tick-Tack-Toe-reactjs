@@ -4,6 +4,7 @@ import Tile from "./tile";
 class Row extends Component {
   render() {
     let cpuButton;
+
     if (this.props.gameOver === false) {
       cpuButton = (
         <button
@@ -15,11 +16,7 @@ class Row extends Component {
       );
     } else if (this.props.gameOver === true) {
       cpuButton = (
-        <button
-          disabled
-          className="btn btn-primary m-1"
-          onClick={this.props.handleCpuTurn}
-        >
+        <button disabled className="btn btn-primary m-1">
           CPU Turn
         </button>
       );

@@ -6,10 +6,10 @@ import TurnBar from "./components/turnbar";
 class App extends Component {
   state = {
     xTurn: true, //x is the player, o is cpu
-    gameOver: false,
     freeSpaces: 9,
     cpuBlock: false,
     cpuMove: null,
+    gameOver: false,
     grid: [
       { id: 1, value: "_", winTile: false },
       { id: 2, value: "_", winTile: false },
@@ -23,11 +23,16 @@ class App extends Component {
     ]
   };
 
-  checkTile = tile => {
+  checkTile = (tile, freeSpaces) => {
     const grid = [...this.state.grid];
     const index = grid.indexOf(tile);
+    this.setState({ cpuBlock: false, cpuMove: null });
 
     if (this.state.xTurn === true && grid[index].value === "_") {
+      if (freeSpaces === 1) {
+        console.log("board full");
+        this.setState({ gameOver: true });
+      }
       this.handlePlace(tile);
     }
   };
@@ -44,7 +49,7 @@ class App extends Component {
         grid[index].value = "o";
         this.setState({ grid, cpuBlock: false, cpuMove: null });
         console.log("blocked player at", this.state.cpuMove);
-      } else {
+      } else if (this.state.freeSpaces > -1) {
         let randIndex;
 
         do {
@@ -75,11 +80,9 @@ class App extends Component {
       this.setState({ xTurn });
     }
 
-    let freeSpaces = this.state.freeSpaces;
-    freeSpaces--;
-    this.setState({ freeSpaces });
+    this.setState({ freeSpaces: this.state.freeSpaces - 1 });
 
-    this.checkWin(tile);
+    this.checkWin();
   };
 
   handleReset = () => {
@@ -131,28 +134,28 @@ class App extends Component {
       } else if (
         grid[i].value !== "_" &&
         grid[i + 1].value !== "_" &&
-        grid[i + 2].value !== "o" &&
+        grid[i + 2].value === "_" &&
         grid[i].value === grid[i + 1].value
       ) {
         this.setState({ cpuBlock: true, cpuMove: grid[i + 2].id });
       } else if (
         grid[i].value !== "_" &&
         grid[i + 2].value !== "_" &&
-        grid[i + 1].value !== "o" &&
+        grid[i + 1].value === "_" &&
         grid[i].value === grid[i + 2].value
       ) {
         this.setState({ cpuBlock: true, cpuMove: grid[i + 1].id });
       } else if (
         grid[i].value !== "_" &&
         grid[i + 1].value !== "_" &&
-        grid[i + 2].value !== "o" &&
+        grid[i + 2].value === "_" &&
         grid[i].value === grid[i + 1].value
       ) {
         this.setState({ cpuBlock: true, cpuMove: grid[i + 2].id });
       } else if (
         grid[i + 1].value !== "_" &&
         grid[i + 2].value !== "_" &&
-        grid[i].value !== "o" &&
+        grid[i].value === "_" &&
         grid[i + 1].value === grid[i + 2].value
       ) {
         this.setState({ cpuBlock: true, cpuMove: grid[i].id });
@@ -182,21 +185,21 @@ class App extends Component {
       } else if (
         grid[i].value !== "_" &&
         grid[i + 3].value !== "_" &&
-        grid[i + 6].value !== "o" &&
+        grid[i + 6].value === "_" &&
         grid[i].value === grid[i + 3].value
       ) {
         this.setState({ cpuBlock: true, cpuMove: grid[i + 6].id });
       } else if (
         grid[i].value !== "_" &&
         grid[i + 6].value !== "_" &&
-        grid[i + 3].value !== "o" &&
+        grid[i + 3].value === "_" &&
         grid[i].value === grid[i + 6].value
       ) {
         this.setState({ cpuBlock: true, cpuMove: grid[i + 3].id });
       } else if (
         grid[i + 3].value !== "_" &&
         grid[i + 6].value !== "_" &&
-        grid[i].value !== "o" &&
+        grid[i].value === "_" &&
         grid[i + 3].value === grid[i + 6].value
       ) {
         this.setState({ cpuBlock: true, cpuMove: grid[i].id });
@@ -221,24 +224,24 @@ class App extends Component {
       this.setState({ gameOver });
 
       console.log("Diagnal Winner");
-    }else if (
+    } else if (
       grid[0].value !== "_" &&
       grid[4].value !== "_" &&
-      grid[8].value !== "o" &&
+      grid[8].value === "_" &&
       grid[0].value === grid[4].value
     ) {
       this.setState({ cpuBlock: true, cpuMove: grid[8].id });
-    }else if (
+    } else if (
       grid[0].value !== "_" &&
       grid[8].value !== "_" &&
-      grid[4].value !== "o" &&
+      grid[4].value === "_" &&
       grid[0].value === grid[8].value
     ) {
       this.setState({ cpuBlock: true, cpuMove: grid[4].id });
-    }else if (
+    } else if (
       grid[4].value !== "_" &&
       grid[8].value !== "_" &&
-      grid[0].value !== "o" &&
+      grid[0].value === "_" &&
       grid[4].value === grid[8].value
     ) {
       this.setState({ cpuBlock: true, cpuMove: grid[0].id });
@@ -263,25 +266,24 @@ class App extends Component {
       this.setState({ gameOver });
 
       console.log("Diagnal Winner");
-    }else if (
+    } else if (
       grid[2].value !== "_" &&
       grid[4].value !== "_" &&
-      grid[6].value !== "o" &&
+      grid[6].value === "_" &&
       grid[2].value === grid[4].value
     ) {
       this.setState({ cpuBlock: true, cpuMove: grid[6].id });
-    }else if (
+    } else if (
       grid[2].value !== "_" &&
       grid[6].value !== "_" &&
-      grid[4].value !== "o" &&
+      grid[4].value === "_" &&
       grid[2].value === grid[6].value
     ) {
       this.setState({ cpuBlock: true, cpuMove: grid[4].id });
-    }
-    else if (
+    } else if (
       grid[4].value !== "_" &&
       grid[6].value !== "_" &&
-      grid[2].value !== "o" &&
+      grid[2].value === "_" &&
       grid[4].value === grid[6].value
     ) {
       this.setState({ cpuBlock: true, cpuMove: grid[2].id });
