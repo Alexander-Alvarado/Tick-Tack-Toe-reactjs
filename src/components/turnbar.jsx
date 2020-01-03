@@ -15,7 +15,8 @@ class TurnBar extends Component {
       } else if(this.props.xTurn === true) {
         player = "CPU Wins!";
       }
-    } else if (this.props.xTurn === true) {
+    } 
+    else if (this.props.xTurn === true) {
       player = "Your Turn";
     } else {
       player = "CPU's Turn";

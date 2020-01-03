@@ -306,7 +306,6 @@ class App extends Component {
             gameOver={this.state.gameOver}
             freeSpaces={this.state.freeSpaces}
             xTurn={this.state.xTurn}
-            handlePlace={this.handlePlace}
             handleCpuTurn={this.handleCpuTurn}
           />
         </div>
