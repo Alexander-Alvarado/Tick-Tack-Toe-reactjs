@@ -6,6 +6,7 @@ class Board extends Component {
     if (this.props.xTurn === false && this.props.gameOver !== true) {
       this.props.handleCpuTurn();
     }
+
     return (
       <div className="container">
         <div className="d-flex justify-content-center btn ">{this.row1()}</div>

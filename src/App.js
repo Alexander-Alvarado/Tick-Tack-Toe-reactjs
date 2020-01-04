@@ -11,7 +11,7 @@ class App extends Component {
     cpuMove: null,
     gameOver: false,
     winner: false,
-
+    lastTie: "o",
     grid: [
       { id: 1, value: "_", winTile: false },
       { id: 2, value: "_", winTile: false },
@@ -25,16 +25,12 @@ class App extends Component {
     ]
   };
 
-  checkTile = (tile, freeSpaces) => {
+  checkTile = tile => {
     const grid = [...this.state.grid];
     const index = grid.indexOf(tile);
     this.setState({ cpuBlock: false, cpuMove: null });
 
     if (this.state.xTurn === true && grid[index].value === "_") {
-      if (freeSpaces === 1) {
-        console.log("board full");
-        this.setState({ gameOver: true });
-      }
       this.handlePlace(tile);
     }
   };
@@ -67,6 +63,11 @@ class App extends Component {
   };
 
   handlePlace = tile => {
+    if (this.state.freeSpaces === 1) {
+      console.log("board full");
+      this.setState({ gameOver: true });
+    }
+
     if (this.state.xTurn === true) {
       const grid = [...this.state.grid];
       const index = grid.indexOf(tile);
@@ -95,9 +96,13 @@ class App extends Component {
     });
     this.setState({ grid });
 
-    let xTurn = this.state.xTurn;
-    xTurn = true;
-    this.setState({ xTurn });
+    if (this.state.freeSpaces === 0 && this.state.winner === false) {
+      if (this.state.lastTie === "o") {
+        this.setState({ xTurn: true, lastTie: "x" });
+      } else if (this.state.lastTie === "x") {
+        this.setState({ xTurn: false, lastTie: "o" });
+      }
+    }
 
     let gameOver = this.state.gameOver;
     gameOver = false;
