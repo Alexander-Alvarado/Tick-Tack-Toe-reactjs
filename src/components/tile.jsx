@@ -18,7 +18,7 @@ class Tile extends Component {
           </button>
         );
       }
-    } else if (this.props.gameOver === true && this.props.freeSpaces === 0) {
+    } else if (this.props.gameOver === true && this.props.winner === false) {
       tile = (
         <button disabled className="btn btn-lg btn-warning mx-2">
           {this.props.tile.value}

@@ -33,6 +33,7 @@ class Board extends Component {
           xTurn={this.props.xTurn}
           checkTile={this.props.checkTile}
           handleCpuTurn={this.props.handleCpuTurn}
+          winner={this.props.winner}
         />
       ));
   }
@@ -50,6 +51,7 @@ class Board extends Component {
           xTurn={this.props.xTurn}
           checkTile={this.props.checkTile}
           handleCpuTurn={this.props.handleCpuTurn}
+          winner={this.props.winner}
         />
       ));
   }
@@ -67,6 +69,7 @@ class Board extends Component {
           xTurn={this.props.xTurn}
           checkTile={this.props.checkTile}
           handleCpuTurn={this.props.handleCpuTurn}
+          winner={this.props.winner}
         />
       ));
   }

@@ -3,20 +3,15 @@ import React, { Component } from "react";
 class TurnBar extends Component {
   render() {
     let player;
-
     if (this.props.gameOver === true) {
-      if( this.props.freeSpaces === 0){
-
-          player = "No Winner";
-        
-      }
-      else if (this.props.xTurn === false) {
+      if (this.props.winner === false) {
+        player = "No Winner";
+      } else if (this.props.xTurn === false) {
         player = "You Win!";
-      } else if(this.props.xTurn === true) {
+      } else if (this.props.xTurn === true) {
         player = "CPU Wins!";
       }
-    } 
-    else if (this.props.xTurn === true) {
+    } else if (this.props.xTurn === true) {
       player = "Your Turn";
     } else {
       player = "CPU's Turn";

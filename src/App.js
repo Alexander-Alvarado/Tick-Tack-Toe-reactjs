@@ -10,6 +10,8 @@ class App extends Component {
     cpuBlock: false,
     cpuMove: null,
     gameOver: false,
+    winner: false,
+
     grid: [
       { id: 1, value: "_", winTile: false },
       { id: 2, value: "_", winTile: false },
@@ -106,6 +108,8 @@ class App extends Component {
     this.setState({ freeSpaces });
 
     this.setState({ cpuBlock: false, cpuMove: null });
+
+    this.setState({ winner: false });
     console.log("new game");
   };
 
@@ -130,6 +134,8 @@ class App extends Component {
         let gameOver = this.state.gameOver;
         gameOver = true;
         this.setState({ gameOver });
+        this.setState({ winner: true });
+
         console.log("Horizontal Winner");
       } else if (
         grid[i].value !== "_" &&
@@ -180,6 +186,7 @@ class App extends Component {
         let gameOver = this.state.gameOver;
         gameOver = true;
         this.setState({ gameOver });
+        this.setState({ winner: true });
 
         console.log("Vertical Winner");
       } else if (
@@ -222,6 +229,7 @@ class App extends Component {
       let gameOver = this.state.gameOver;
       gameOver = true;
       this.setState({ gameOver });
+      this.setState({ winner: true });
 
       console.log("Diagnal Winner");
     } else if (
@@ -264,6 +272,7 @@ class App extends Component {
       let gameOver = this.state.gameOver;
       gameOver = true;
       this.setState({ gameOver });
+      this.setState({ winner: true });
 
       console.log("Diagnal Winner");
     } else if (
@@ -294,9 +303,11 @@ class App extends Component {
     return (
       <React.Fragment>
         <TurnBar
+          grid={this.state.grid}
           xTurn={this.state.xTurn}
           gameOver={this.state.gameOver}
           freeSpaces={this.state.freeSpaces}
+          winner={this.state.winner}
         />
         <div>
           <Board
@@ -307,6 +318,7 @@ class App extends Component {
             freeSpaces={this.state.freeSpaces}
             xTurn={this.state.xTurn}
             handleCpuTurn={this.handleCpuTurn}
+            winner={this.state.winner}
           />
         </div>
       </React.Fragment>
