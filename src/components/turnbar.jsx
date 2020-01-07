@@ -5,7 +5,7 @@ class TurnBar extends Component {
     let player;
     if (this.props.gameOver === true) {
       if (this.props.winner === false) {
-        player = "No Winner";
+        player = "Tie!";
       } else if (this.props.xTurn === false) {
         player = "You Win!";
       } else if (this.props.xTurn === true) {

@@ -5,7 +5,6 @@ class Board extends Component {
   render() {
     if (this.props.xTurn === false && this.props.gameOver !== true) {
       setTimeout(this.props.handleCpuTurn, 500);
-      //this.props.handleCpuTurn();
     }
 
     return (
