@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/tic-tack-toe-reactjs/static/css/main.d1b05096.chunk.css",
-    "main.js": "/tic-tack-toe-reactjs/static/js/main.0027dc97.chunk.js",
-    "main.js.map": "/tic-tack-toe-reactjs/static/js/main.0027dc97.chunk.js.map",
-    "runtime-main.js": "/tic-tack-toe-reactjs/static/js/runtime-main.0b23c0f7.js",
-    "runtime-main.js.map": "/tic-tack-toe-reactjs/static/js/runtime-main.0b23c0f7.js.map",
-    "static/css/2.64a99b10.chunk.css": "/tic-tack-toe-reactjs/static/css/2.64a99b10.chunk.css",
-    "static/js/2.3db26b0b.chunk.js": "/tic-tack-toe-reactjs/static/js/2.3db26b0b.chunk.js",
-    "static/js/2.3db26b0b.chunk.js.map": "/tic-tack-toe-reactjs/static/js/2.3db26b0b.chunk.js.map",
-    "index.html": "/tic-tack-toe-reactjs/index.html",
-    "precache-manifest.c0af018d98c613ecde4cd05799211dc9.js": "/tic-tack-toe-reactjs/precache-manifest.c0af018d98c613ecde4cd05799211dc9.js",
-    "service-worker.js": "/tic-tack-toe-reactjs/service-worker.js",
-    "static/css/2.64a99b10.chunk.css.map": "/tic-tack-toe-reactjs/static/css/2.64a99b10.chunk.css.map",
-    "static/css/main.d1b05096.chunk.css.map": "/tic-tack-toe-reactjs/static/css/main.d1b05096.chunk.css.map",
-    "static/js/2.3db26b0b.chunk.js.LICENSE": "/tic-tack-toe-reactjs/static/js/2.3db26b0b.chunk.js.LICENSE"
+    "main.css": "/Tick-Tack-Toe-reactjs/static/css/main.d1b05096.chunk.css",
+    "main.js": "/Tick-Tack-Toe-reactjs/static/js/main.b341d11e.chunk.js",
+    "main.js.map": "/Tick-Tack-Toe-reactjs/static/js/main.b341d11e.chunk.js.map",
+    "runtime-main.js": "/Tick-Tack-Toe-reactjs/static/js/runtime-main.7474dcf7.js",
+    "runtime-main.js.map": "/Tick-Tack-Toe-reactjs/static/js/runtime-main.7474dcf7.js.map",
+    "static/css/2.64a99b10.chunk.css": "/Tick-Tack-Toe-reactjs/static/css/2.64a99b10.chunk.css",
+    "static/js/2.3db26b0b.chunk.js": "/Tick-Tack-Toe-reactjs/static/js/2.3db26b0b.chunk.js",
+    "static/js/2.3db26b0b.chunk.js.map": "/Tick-Tack-Toe-reactjs/static/js/2.3db26b0b.chunk.js.map",
+    "index.html": "/Tick-Tack-Toe-reactjs/index.html",
+    "precache-manifest.e976b6c61eaf7ca3f729bc7b747f843a.js": "/Tick-Tack-Toe-reactjs/precache-manifest.e976b6c61eaf7ca3f729bc7b747f843a.js",
+    "service-worker.js": "/Tick-Tack-Toe-reactjs/service-worker.js",
+    "static/css/2.64a99b10.chunk.css.map": "/Tick-Tack-Toe-reactjs/static/css/2.64a99b10.chunk.css.map",
+    "static/css/main.d1b05096.chunk.css.map": "/Tick-Tack-Toe-reactjs/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.3db26b0b.chunk.js.LICENSE": "/Tick-Tack-Toe-reactjs/static/js/2.3db26b0b.chunk.js.LICENSE"
   },
   "entrypoints": [
-    "static/js/runtime-main.0b23c0f7.js",
+    "static/js/runtime-main.7474dcf7.js",
     "static/css/2.64a99b10.chunk.css",
     "static/js/2.3db26b0b.chunk.js",
     "static/css/main.d1b05096.chunk.css",
-    "static/js/main.0027dc97.chunk.js"
+    "static/js/main.b341d11e.chunk.js"
   ]
 }
